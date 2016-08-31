@@ -29,6 +29,9 @@
         <name>CustomTab</name>
     </types>
     <types>
+        <members>Build__c-Build Layout</members>
+        <members>Change_Request__c-Change Request Layout</members>
+        <members>Connection__c-Connection Layout</members>
         <members>Salesforce_Org__c-Salesforce Org Layout</members>
         <name>Layout</name>
     </types>
