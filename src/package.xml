@@ -2,10 +2,6 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
         <members>*</members>
-        <name>CustomTab</name>
-    </types>
-    <types>
-        <members>*</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -29,8 +25,16 @@
         <name>CustomObject</name>
     </types>
     <types>
+        <members>*</members>
+        <name>CustomTab</name>
+    </types>
+    <types>
         <members>Salesforce_Org__c-Salesforce Org Layout</members>
         <name>Layout</name>
+    </types>
+    <types>
+        <members>SFChangeSetManagementAccess</members>
+        <name>PermissionSet</name>
     </types>
     <types>
         <members>*</members>
