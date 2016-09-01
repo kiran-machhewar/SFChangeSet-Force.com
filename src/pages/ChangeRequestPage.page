@@ -40,6 +40,11 @@
 			<apex:pageBlockSectionItem >
 				<apex:commandButton value="Add Components" reRender="dummy" action="{!null}" onclick="updateComponents();return;"/>
 			</apex:pageBlockSectionItem>
+		</apex:pageBlockSection> 
+		<apex:pageBlockSection title="Add Other Component" columns="2" rendered="{! changeRequest.Id != null }">
+				<apex:inputField value="{!otherComponent.Component_Name__c}"/>
+				<apex:commandButton value="Add Other Component" 
+					status="showLoading" reRender="changeSetComponentsPanel,msg" action="{!addOtherComponent}" />
 		</apex:pageBlockSection>
 		<apex:pageBlockSection title="Add SObjects,Fields" columns="2" id="customObjectFieldsPanel" rendered="{! changeRequest.Id != null }">
 			<apex:pageBlockSectionItem >

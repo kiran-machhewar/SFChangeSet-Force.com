@@ -16,6 +16,8 @@ public with sharing class ChangeRequestPageController {
     
     public String selectedComponentType {get;set;}
     
+    public Component__c otherComponent {get;set;}
+    
     public List<Component__c> getComponents(){
         return [SELECT Id, Component_Name__c,Type__c FROM Component__c 
                         WHERE Change_Request__c =:changeRequest.Id Order by Type__c, Component_Name__c ];
@@ -23,6 +25,7 @@ public with sharing class ChangeRequestPageController {
     }
     
     public ChangeRequestPageController(ApexPages.StandardController std){
+        
         fieldList = new List<SelectOption>();
         sobjectMap = new Map<String,String>();
         fieldList.add(new SelectOption('','-NONE-'));
@@ -31,10 +34,18 @@ public with sharing class ChangeRequestPageController {
         if(std.getId()!=null){
             changeRequest = [Select Id,Name , Salesforce_Org__c ,CR_ID__c, Status__c From Change_Request__c WHERE ID=:std.getId()];
             populateCustomObjects();
+        	otherComponent = new Component__c(Change_Request__c = changeRequest.Id,Type__c='Other');//init other component
         }
         populateComponentsTypes();
         
         
+    }
+    
+    public PageReference addOtherComponent(){
+    	otherComponent.Change_Request__c = changeRequest.Id;
+    	insert otherComponent;
+    	otherComponent = new Component__c(Change_request__c= changeRequest.Id,Type__c='Other');
+    	return null;
     }
     
     public PageReference saveRecord(){

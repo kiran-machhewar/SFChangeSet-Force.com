@@ -62,7 +62,7 @@ public with sharing class ChangeRequestService {
     	}
     	for(Component__c component : [Select Component_Name__c, Change_Request__c From Component__c 
     										WHERE Change_Request__c in :changeRequests
-    										AND Type__c in ('ApexClass','ApexComponent','ApexTrigger','ApexPage','StaticResource','Layout')]){
+    										AND Type__c in ('ApexClass','ApexComponent','ApexTrigger','ApexPage','StaticResource','Layout','Other')]){
     		if(changeRequestVsComponents.get(component.Change_Request__c)==null){
     			changeRequestVsComponents.put(component.Change_Request__c,new Set<String>());
     		}
