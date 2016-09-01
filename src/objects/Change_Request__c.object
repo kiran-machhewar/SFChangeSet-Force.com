@@ -72,6 +72,57 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Description__c</fullName>
+        <description>This will hold the description of change request or issue.</description>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Owner__c</fullName>
+        <externalId>false</externalId>
+        <label>Owner</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Dev1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dev2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dev3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dev4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dev5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Pre_Post_Deployment_Steps__c</fullName>
+        <description>This will include pre and post deployment activities to be done.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This will include pre and post deployment activities to be done.</inlineHelpText>
+        <label>Pre-Post Deployment Steps</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
         <fullName>Salesforce_Org__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -94,6 +145,14 @@
             </picklistValues>
             <picklistValues>
                 <fullName>WIP</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DevelopmentCompleted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UnderQATesting</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>

@@ -5,7 +5,7 @@ public with sharing class SFDeploymentController {
 	
 	public SFDeploymentController(){		
 		groupedChanges = ChangeRequestService.groupChangeRequests([Select Id,Status__c,CR_ID__c,Name From Change_Request__c 
-					WHERE Status__c='UATReady' OR Status__c='UAT'  OR Status__c= 'MoveToLive']);
+					WHERE  Status__c='UAT'  OR Status__c= 'MoveToLive']);
 	}
 	
 	public List<SelectOption> getBuilds() {
@@ -78,9 +78,9 @@ public with sharing class SFDeploymentController {
 	
 	
 	public PageReference groupChanges(){
-		String crIdListString = Apexpages.currentPage().getParameters().get('crIdListString');
-		List<String> crIdList = crIdListString.split(',');
-		groupedChanges =  ChangeRequestService.groupChangeRequests([Select Id,Status__c,CR_ID__c,Name From Change_Request__c WHERE Id in :crIdList]);
+		String crIdListString = Apexpages.currentPage().getParameters().get('crTypes');
+		List<String> crTypeList = crIdListString.split(',');
+		groupedChanges =  ChangeRequestService.groupChangeRequests([Select Id,Status__c,CR_ID__c,Name From Change_Request__c WHERE Status__c in :crTypeList]);
 		return null;
 	}
 	

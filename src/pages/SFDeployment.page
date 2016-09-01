@@ -12,16 +12,24 @@
 		        </apex:selectList>
 			</center>			
 		</apex:pageBlockSection>
-		<!-- <apex:pageBlockSection title="Select Changes To Be Grouped" columns="1">
+		<apex:pageBlockSection title="Select Changes To Be Grouped" columns="1">
 			<center>
 				<select id="changeRequestToBeGrouped" multiple="multiple" >  
-						 
+						 <option >Discussion</option>
+						 <option >WIP</option>
+						 <option >DevelopmentCompleted</option>
+						 <option >UnderQATesting</option>
+						 <option >UATReady</option>						 
+						 <option selected="selected" >UAT</option>
+						 <option selected="selected" >MoveToLive</option>						 
+						 <option>PROD</option>
+						 <option>CLOSED</option>
 				</select> 
 				<center>
 					<apex:commandButton value="Group Selected Changes" reRender="dummy,msg" action="{!null}" onclick="groupChanges(jQuery('#changeRequestToBeGrouped').val().toString());return;"/>
 				</center>
 			</center>			
-		</apex:pageBlockSection> -->		
+		</apex:pageBlockSection>		
 		<apex:outputPanel id="groupingResult">
 			<apex:repeat value="{!groupedChanges}" var="group">
 				<apex:outputPanel rendered="{! group.groupName != 'Independent' }" >
@@ -55,7 +63,7 @@
 	</apex:pageBlock>   	
 		<apex:actionRegion > 
 			<apex:actionFunction name="groupChanges" reRender="groupingResult,msg" action="{!groupChanges}">
-				<apex:param value="" name="crIdListString"/>
+				<apex:param value="" name="crTypes"/>
 			</apex:actionFunction>
 		</apex:actionRegion>
 	</apex:form>
@@ -94,7 +102,8 @@
 					jQuery(this).prop( "disabled", true );
 				}
 			});
-			refreshChangeRequestsToBeGrouped();
+			//refreshChangeRequestsToBeGrouped();
+			 jQuery('[id$=changeRequestToBeGrouped]').select2({ width: '1000px' });
 		});
 		
 		function refreshSelection(){
@@ -120,27 +129,7 @@
 		    }
 		}
 		
-		
-		function refreshChangeRequestsToBeGrouped(){
-			SFDeploymentController.getChangeRequests(function(result,event){
-				if(event.status){
-					if(result){
-                        for(key in result){
-                            var groupStart = '<optgroup label="'+key+'">';
-                            var groupBody = '';
-                                for(index in result[key]){                                	
-                                	if(result[key][index].Name){
-	                                    groupBody +='<option value="'+result[key][index].Id+'" >'+result[key][index].Name+'</option>';
-                                	}
-                                } 
-                            var groupEnd = '</optgroup>';
-                            jQuery('[id$=changeRequestToBeGrouped]').append(groupStart+groupBody+groupEnd);
-                        }
-                        jQuery('[id$=changeRequestToBeGrouped]').select2({ width: '1000px' });
-                    }
-				}
-			});
-		}
+			
 	</script>
 	<c:loadingStatusSpinner ></c:loadingStatusSpinner>
 </apex:page>

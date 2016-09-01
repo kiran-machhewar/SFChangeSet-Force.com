@@ -32,9 +32,12 @@ public with sharing class ChangeRequestPageController {
         changeRequest = (Change_Request__c)std.getRecord();
         componentTypes = new List<SelectOption>();
         if(std.getId()!=null){
-            changeRequest = [Select Id,Name , Salesforce_Org__c ,CR_ID__c, Status__c From Change_Request__c WHERE ID=:std.getId()];
+            changeRequest = [Select Id,Name , Salesforce_Org__c ,CR_ID__c, Status__c, Owner__c,Description__c,Pre_Post_Deployment_Steps__c
+            						From Change_Request__c WHERE ID=:std.getId()];
             populateCustomObjects();
         	otherComponent = new Component__c(Change_Request__c = changeRequest.Id,Type__c='Other');//init other component
+        }else{
+        	otherComponent = new Component__c(Type__c='Other');//init other component
         }
         populateComponentsTypes();
         

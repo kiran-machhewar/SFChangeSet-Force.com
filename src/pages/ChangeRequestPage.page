@@ -15,18 +15,23 @@
              </apex:actionStatus> 
      </center>
 	<apex:pageBlock >
-		<apex:pageBlockSection title="Change Request" id="changeRequestDetails"> 
-			<apex:inputField required="true" value="{!changeRequest.Name}"/>
-			<apex:inputField required="true" value="{!changeRequest.CR_ID__c}"/>
-			<apex:inputField required="true" value="{!changeRequest.Status__c}"/>
-			<apex:inputField required="true" value="{!changeRequest.Salesforce_Org__c}"/>
-			<center>
-				<apex:outputPanel >			
-					<apex:commandButton value="Save"  action="{!saveRecord}" reRender="dummy,changeRequestDetails,msg,changeRequestComponentPanel,dynamicJs,changeSetComponentsPanel" 
-							oncomplete="populateCustomObjects();" status="showLoading">
-					</apex:commandButton>
-				</apex:outputPanel>
-			</center>
+		<apex:pageBlockSection title="Change Request" id="changeRequestDetails" columns="1" > 
+			<apex:inputField required="true" value="{!changeRequest.Name}" style="width:850px"/>  
+			<apex:pageBlockSection>
+				<apex:inputField required="true" value="{!changeRequest.CR_ID__c}" style="width:200px"/>
+				<apex:inputField required="true" value="{!changeRequest.Status__c}" style="width:200px"/>
+				<apex:inputField required="true" value="{!changeRequest.Salesforce_Org__c}" style="width:200px"/>
+				<apex:inputField required="true" value="{!changeRequest.Owner__c}" style="width:200px" />	 		
+				<apex:inputField value="{!changeRequest.Description__c}" style="width:200px"/>	
+				<apex:inputField value="{!changeRequest.Pre_Post_Deployment_Steps__c}" style="width:200px" />	
+				<center> 
+					<apex:outputPanel >			
+						<apex:commandButton value="Save"  action="{!saveRecord}" reRender="dummy,changeRequestDetails,msg,changeRequestComponentPanel,dynamicJs,changeSetComponentsPanel" 
+								oncomplete="populateCustomObjects();" status="showLoading">
+						</apex:commandButton>
+					</apex:outputPanel>
+				</center>
+			</apex:pageBlockSection>
 		</apex:pageBlockSection>
 		<apex:outputPanel id="changeRequestComponentPanel" >		
 		<apex:pageBlockSection title="Add Classes,Triggers,Components,Pages" columns="2" rendered="{! changeRequest.Id != null }">
