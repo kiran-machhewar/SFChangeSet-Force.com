@@ -303,7 +303,7 @@ public with sharing class MetadataSyncService {
         
         public static List<String> getCustomFields(SFOrgLogin sforgLogin,String sobjectEnumOrId){
         	List<String> fieldList = new List<String>();
-        	String query = ' SELECT Id, FullName FROM CustomField WHERE TableEnumOrId= \''+sobjectEnumOrId+'\' ';
+        	String query = ' SELECT Id, DeveloperName FROM CustomField WHERE TableEnumOrId= \''+sobjectEnumOrId+'\' ';
             query = EncodingUtil.urlEncode(query, 'UTF-8');
             String response = makeToolingApiRequest(sforglogin.instanceURL+'/services/data/v34.0/tooling/query/?q='+query,sforglogin.sessionid);
             List<String> result = new List<String>();
@@ -312,7 +312,7 @@ public with sharing class MetadataSyncService {
             List<Object> records = (List<Object>)responseMap.get('records');
             for(Object record : records){
             	Map<String,Object> recordObj  = (Map<String,Object>) record;
-                String name = ''+recordObj.get('FullName');                                             
+                String name = sobjectEnumOrId+'.'+recordObj.get('DeveloperName')+'__c';//making sure that it returns data in the format objctname.fieldname                                             
                 fieldList.add(name);
             }
             return fieldList;
